@@ -77,12 +77,12 @@ public class Limb : MonoBehaviour
         };   
 
         // Set the colour of the rectangle
-        /*mesh.colors = new Color[] {
+        mesh.colors = new Color[] {
             new Color(0.8f, 0.3f, 0.3f, 1.0f),
             new Color(0.8f, 0.3f, 0.3f, 1.0f),
             new Color(0.8f, 0.3f, 0.3f, 1.0f),
             new Color(0.8f, 0.3f, 0.3f, 1.0f)
-        }; */    
+        };     
 
         //Set vertex indices
         mesh.triangles = new int[] {

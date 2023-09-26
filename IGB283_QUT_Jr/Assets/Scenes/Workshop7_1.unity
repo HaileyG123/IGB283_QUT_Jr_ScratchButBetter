@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 25122701}
-  - component: {fileID: 25122700}
+  - component: {fileID: 25122702}
   m_Layer: 0
   m_Name: UpperArm
   m_TagString: Untagged
@@ -140,31 +140,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &25122700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25122699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb82dca80a540f4e8097c2995e2d997, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  child: {fileID: 1488803176}
-  control: {fileID: 1430533208}
-  jointLocation: {x: 0, y: 2, z: 1}
-  jointOffset: {x: 0, y: 2, z: 1}
-  angle: 0
-  lastAngle: 0
-  limbVertexLocations:
-  - {x: -0.25, y: 0, z: 1}
-  - {x: -0.25, y: 2, z: 1}
-  - {x: 0.25, y: 2, z: 1}
-  - {x: 0.25, y: 0, z: 1}
-  mesh: {fileID: 0}
-  mat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!4 &25122701
 Transform:
   m_ObjectHideFlags: 0
@@ -180,6 +155,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &25122702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25122699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec315b0fdd8d064a872932ef42321dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  child: {fileID: 1488803176}
+  control: {fileID: 1430533208}
+  jointLocation: {x: 0, y: 2, z: 1}
+  jointOffset: {x: 0, y: 2, z: 1}
+  angle: 0
+  lastAngle: 0
+  limbVertexLocations:
+  - {x: -0.25, y: 0, z: 1}
+  - {x: -0.25, y: 2, z: 1}
+  - {x: 0.25, y: 2, z: 1}
+  - {x: 0.25, y: 0, z: 1}
+  mesh: {fileID: 0}
+  mat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &111577230
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,7 +1295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1279292980}
-  - component: {fileID: 1279292979}
+  - component: {fileID: 1279292981}
   m_Layer: 0
   m_Name: Wrist
   m_TagString: Untagged
@@ -1303,31 +1303,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1279292979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279292978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb82dca80a540f4e8097c2995e2d997, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  child: {fileID: 0}
-  control: {fileID: 0}
-  jointLocation: {x: 0, y: 0, z: 1}
-  jointOffset: {x: 0, y: 2, z: 1}
-  angle: 0
-  lastAngle: 0
-  limbVertexLocations:
-  - {x: -0.1, y: 0, z: 1}
-  - {x: -0.1, y: 1, z: 1}
-  - {x: 0.1, y: 1, z: 1}
-  - {x: 0.1, y: 0, z: 1}
-  mesh: {fileID: 0}
-  mat: {fileID: 0}
 --- !u!4 &1279292980
 Transform:
   m_ObjectHideFlags: 0
@@ -1343,6 +1318,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1279292981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279292978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec315b0fdd8d064a872932ef42321dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  child: {fileID: 0}
+  control: {fileID: 0}
+  jointLocation: {x: 0, y: 0, z: 1}
+  jointOffset: {x: 0, y: 2, z: 1}
+  angle: 0
+  lastAngle: 0
+  limbVertexLocations:
+  - {x: -0.1, y: 0, z: 1}
+  - {x: -0.1, y: 1, z: 1}
+  - {x: 0.1, y: 1, z: 1}
+  - {x: 0, y: 0, z: 0}
+  mesh: {fileID: 0}
+  mat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &1426120638
 GameObject:
   m_ObjectHideFlags: 0
@@ -1523,7 +1523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1488803178}
-  - component: {fileID: 1488803177}
+  - component: {fileID: 1488803179}
   m_Layer: 0
   m_Name: LowerArm
   m_TagString: Untagged
@@ -1531,31 +1531,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1488803177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488803176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb82dca80a540f4e8097c2995e2d997, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  child: {fileID: 1279292978}
-  control: {fileID: 951952536}
-  jointLocation: {x: 0, y: 2, z: 1}
-  jointOffset: {x: 0, y: 2, z: 1}
-  angle: 0
-  lastAngle: 0
-  limbVertexLocations:
-  - {x: -0.25, y: 0, z: 1}
-  - {x: -0.25, y: 2, z: 1}
-  - {x: 0.25, y: 2, z: 1}
-  - {x: 0.25, y: 0, z: 1}
-  mesh: {fileID: 0}
-  mat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!4 &1488803178
 Transform:
   m_ObjectHideFlags: 0
@@ -1571,6 +1546,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1488803179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488803176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec315b0fdd8d064a872932ef42321dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  child: {fileID: 1279292978}
+  control: {fileID: 951952536}
+  jointLocation: {x: 0, y: 2, z: 1}
+  jointOffset: {x: 0, y: 2, z: 1}
+  angle: 0
+  lastAngle: 0
+  limbVertexLocations:
+  - {x: -0.25, y: 0, z: 1}
+  - {x: -0.25, y: 2, z: 1}
+  - {x: 0.25, y: 2, z: 1}
+  - {x: 0.25, y: 0, z: 1}
+  mesh: {fileID: 0}
+  mat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &1542929408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,7 +1648,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1575549959}
-  - component: {fileID: 1575549958}
+  - component: {fileID: 1575549960}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -1656,31 +1656,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1575549958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1575549957}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb82dca80a540f4e8097c2995e2d997, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  child: {fileID: 25122699}
-  control: {fileID: 153638705}
-  jointLocation: {x: 0, y: 0, z: 1}
-  jointOffset: {x: 0, y: 0, z: 0}
-  angle: 0
-  lastAngle: 0
-  limbVertexLocations:
-  - {x: -1, y: -1, z: 1}
-  - {x: -1, y: 0, z: 1}
-  - {x: 1, y: 0, z: 1}
-  - {x: 1, y: -1, z: 1}
-  mesh: {fileID: 0}
-  mat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!4 &1575549959
 Transform:
   m_ObjectHideFlags: 0
@@ -1696,6 +1671,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1575549960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575549957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec315b0fdd8d064a872932ef42321dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  child: {fileID: 25122699}
+  control: {fileID: 153638705}
+  jointLocation: {x: 0, y: 0, z: 1}
+  jointOffset: {x: 0, y: 0, z: 0}
+  angle: 0
+  lastAngle: 0
+  limbVertexLocations:
+  - {x: -1, y: -1, z: 1}
+  - {x: -1, y: 0, z: 1}
+  - {x: 1, y: 0, z: 1}
+  - {x: 1, y: -1, z: 1}
+  mesh: {fileID: 0}
+  mat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &1577576364
 GameObject:
   m_ObjectHideFlags: 0
