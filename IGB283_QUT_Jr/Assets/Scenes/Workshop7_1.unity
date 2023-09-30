@@ -173,6 +173,7 @@ MonoBehaviour:
   jointOffset: {x: 0, y: 2, z: 1}
   angle: 0
   lastAngle: 0
+  speed: 0.2
   limbVertexLocations:
   - {x: -0.25, y: 0, z: 1}
   - {x: -0.25, y: 2, z: 1}
@@ -1298,7 +1299,7 @@ GameObject:
   - component: {fileID: 1279292981}
   m_Layer: 0
   m_Name: Wrist
-  m_TagString: Untagged
+  m_TagString: Wrist
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1336,11 +1337,11 @@ MonoBehaviour:
   jointOffset: {x: 0, y: 2, z: 1}
   angle: 0
   lastAngle: 0
+  speed: 0.2
   limbVertexLocations:
-  - {x: -0.1, y: 0, z: 1}
-  - {x: -0.1, y: 1, z: 1}
-  - {x: 0.1, y: 1, z: 1}
-  - {x: 0, y: 0, z: 0}
+  - {x: -1, y: 1, z: 1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 1, z: 1}
   mesh: {fileID: 0}
   mat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &1426120638
@@ -1562,8 +1563,9 @@ MonoBehaviour:
   control: {fileID: 951952536}
   jointLocation: {x: 0, y: 2, z: 1}
   jointOffset: {x: 0, y: 2, z: 1}
-  angle: 0
+  angle: 10
   lastAngle: 0
+  speed: 0.2
   limbVertexLocations:
   - {x: -0.25, y: 0, z: 1}
   - {x: -0.25, y: 2, z: 1}
@@ -1689,6 +1691,7 @@ MonoBehaviour:
   jointOffset: {x: 0, y: 0, z: 0}
   angle: 0
   lastAngle: 0
+  speed: 0.2
   limbVertexLocations:
   - {x: -1, y: -1, z: 1}
   - {x: -1, y: 0, z: 1}

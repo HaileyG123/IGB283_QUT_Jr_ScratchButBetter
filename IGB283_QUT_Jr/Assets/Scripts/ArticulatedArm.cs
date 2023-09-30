@@ -13,16 +13,22 @@ public class ArticulatedArm : MonoBehaviour
     //each section
     public GameObject child;
     public GameObject control;
+    
     public Vector3 jointLocation;
     public Vector3 jointOffset;
+    public Vector3 offset = new Vector3(0.5f, 0.0f, 0.0f);
+    
     public float angle;
     public float lastAngle;
+    public float speed = 0.2f;
     public Vector3[] limbVertexLocations;
 
     private Color[] colours;
     
     public Mesh mesh;
     public Material mat;
+
+    private float timeElapsed = 0.0f;
 
     private void Awake()
     {
@@ -43,16 +49,38 @@ public class ArticulatedArm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lastAngle = angle;
+        /*lastAngle = angle;
         if (control != null) {
             angle = control.GetComponent<Slider>().value;
         }
         if (child != null) {
             child.GetComponent<ArticulatedArm>().RotateAroundPoint(
                 jointLocation, angle, lastAngle);
+        }*/
+        
+        //nodding
+        if(child != null)
+        {
+            child.GetComponent<ArticulatedArm>().RotateAroundPoint(
+                jointLocation, angle, lastAngle);
         }
+        
         // Recalculate the bounds of the mesh
         mesh.RecalculateBounds();
+        
+        if (timeElapsed > 0.2f)
+        {
+            float temp = lastAngle;
+            
+            lastAngle = angle;
+            angle = temp;
+            
+            timeElapsed = 0f;
+            //Debug.Log("inside " + timeElapsed);
+        }
+
+        timeElapsed += Time.deltaTime;
+        //Debug.Log(timeElapsed);
     }
     //Rotate the limb around a point 
     public void RotateAroundPoint(Vector3 point, float angle,
@@ -61,11 +89,11 @@ public class ArticulatedArm : MonoBehaviour
         // Move the point to the origin
         Matrix3x3 T1 = Translate(-point);
         // Undo the last rotation
-        Matrix3x3 R1 = Rotate(-lastAngle);
-        // Move the point back to the oritinal position
+        Matrix3x3 R1 = Rotate(-lastAngle * Time.deltaTime * speed);
+        // Move the point back to the original position
         Matrix3x3 T2 = Translate(point);
         // Perform the new rotation
-        Matrix3x3 R2 = Rotate(angle);
+        Matrix3x3 R2 = Rotate(angle * Time.deltaTime * speed);
         // The final translation matrix
         Matrix3x3 M = T2 * R2 * R1 * T1;
         
@@ -133,11 +161,22 @@ public class ArticulatedArm : MonoBehaviour
         //     new Color(0.8f, 0.3f, 0.3f, 1.0f)
         // }; 
         //
-        mesh.triangles = new int[]
+
+        if (limbVertexLocations.Length == 4)
         {
-            0, 1, 2,
-            0, 2, 3
-        };
+            mesh.triangles = new int[]
+            {
+                0, 1, 2,
+                0, 2, 3
+            };
+        }
+        else
+        {
+            mesh.triangles = new int[]
+            {
+                0, 1, 2
+            };
+        }
     }
     
     public void MoveByOffset (Vector3 offset) {
