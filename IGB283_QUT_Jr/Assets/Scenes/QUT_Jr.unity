@@ -421,6 +421,7 @@ MonoBehaviour:
   control: {fileID: 1612734428}
   jointLocation: {x: 0, y: 2, z: 1}
   jointOffset: {x: 0, y: 2, z: 1}
+  offset: {x: 0.01, y: 0, z: 0}
   angle: 0
   lastAngle: 0
   speed: 0.2
@@ -930,6 +931,7 @@ MonoBehaviour:
   control: {fileID: 685075998}
   jointLocation: {x: 0, y: 2, z: 1}
   jointOffset: {x: 0, y: 2, z: 1}
+  offset: {x: 0.01, y: 0, z: 0}
   angle: 10
   lastAngle: 0
   speed: 0.2
@@ -1668,6 +1670,7 @@ MonoBehaviour:
   control: {fileID: 419448960}
   jointLocation: {x: 0, y: 0, z: 1}
   jointOffset: {x: 0, y: 0, z: 0}
+  offset: {x: 0.01, y: 0, z: 0}
   angle: 0
   lastAngle: 0
   speed: 0.2
@@ -2141,6 +2144,7 @@ MonoBehaviour:
   control: {fileID: 0}
   jointLocation: {x: 0, y: 0, z: 1}
   jointOffset: {x: 0, y: 2, z: 1}
+  offset: {x: 0.01, y: 0, z: 0}
   angle: 0
   lastAngle: 0
   speed: 0.2
