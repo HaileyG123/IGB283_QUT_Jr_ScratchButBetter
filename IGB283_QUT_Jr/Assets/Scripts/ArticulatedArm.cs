@@ -48,15 +48,6 @@ public class ArticulatedArm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*lastAngle = angle;
-        if (control != null) {
-            angle = control.GetComponent<Slider>().value;
-        }
-        if (child != null) {
-            child.GetComponent<ArticulatedArm>().RotateAroundPoint(
-                jointLocation, angle, lastAngle);
-        }*/
-        
         //nodding
         if(child != null)
         {
@@ -142,25 +133,8 @@ public class ArticulatedArm : MonoBehaviour
         mesh.vertices = tempArray;
         
         Debug.Log(mesh.vertices);
-
-        
-        // mesh.vertices = new Vector3[]
-        // {
-        //     limbVertexLocations[0],
-        //     limbVertexLocations[1],
-        //     limbVertexLocations[2],
-        //     limbVertexLocations[3]
-        // };
         
         mesh.colors = colours;
-            
-        //     new Color[] {
-        //     new Color(0.8f, 0.3f, 0.3f, 1.0f),
-        //     new Color(0.8f, 0.3f, 0.3f, 1.0f),
-        //     new Color(0.8f, 0.3f, 0.3f, 1.0f),
-        //     new Color(0.8f, 0.3f, 0.3f, 1.0f)
-        // }; 
-        //
 
         if (limbVertexLocations.Length == 4)
         {
