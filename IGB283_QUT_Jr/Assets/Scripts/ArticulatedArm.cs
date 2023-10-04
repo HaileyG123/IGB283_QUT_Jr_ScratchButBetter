@@ -16,7 +16,6 @@ public class ArticulatedArm : MonoBehaviour
     
     public Vector3 jointLocation;
     public Vector3 jointOffset;
-    public Vector3 offset = new Vector3(0.001f, 0.0f, 0.0f);
     
     public float angle;
     public float lastAngle;
@@ -91,7 +90,7 @@ public class ArticulatedArm : MonoBehaviour
         // Undo the last rotation
         Matrix3x3 R1 = Rotate(-lastAngle * Time.deltaTime * speed);
         // Move the point back to the original position
-        Matrix3x3 T2 = Translate(point + offset);
+        Matrix3x3 T2 = Translate(point);
         // Perform the new rotation
         Matrix3x3 R2 = Rotate(angle * Time.deltaTime * speed);
         // The final translation matrix
