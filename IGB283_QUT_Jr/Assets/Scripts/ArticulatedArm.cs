@@ -26,6 +26,7 @@ public class ArticulatedArm : MonoBehaviour
     
     public Mesh mesh;
     public Material mat;
+    private MeshCollider MC;
 
     private float timeElapsed = 0.0f;
 
@@ -116,13 +117,22 @@ public class ArticulatedArm : MonoBehaviour
         //GameObject
         gameObject.AddComponent<MeshFilter>();
         gameObject.AddComponent<MeshRenderer>();
+        gameObject.AddComponent<MeshCollider>();
 
         
         
         //set mat to the material we have selected 
         GetComponent<MeshRenderer>().material = mat;
         mesh = GetComponent<MeshFilter>().mesh;
-
+        MC = GetComponent<MeshCollider>();
+        
+        //setting up the mesh collider
+        MC.sharedMesh = mesh;
+        // MC.convex = true;
+        // MC.isTrigger = true;
+        //
+        
+        
         Vector3[] tempArray = new Vector3[limbVertexLocations.Length];
         for (int i = 0; i < limbVertexLocations.Length; i++)
         {
