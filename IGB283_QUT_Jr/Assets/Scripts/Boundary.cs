@@ -13,7 +13,7 @@ public class Boundary : MonoBehaviour
         {
             Debug.Log("hi");
             
-            ani.offset = -ani.offset;
+            ani.offset.x = -ani.offset.x;
         }
     }
 }
