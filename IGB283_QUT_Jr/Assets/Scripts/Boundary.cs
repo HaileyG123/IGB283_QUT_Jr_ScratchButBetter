@@ -9,11 +9,11 @@ public class Boundary : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Mesh"))
+        if(other.CompareTag("Base"))
         {
             Debug.Log("hi");
-            
             ani.offset.x = -ani.offset.x;
+            ani._base.FlipJunior();
         }
     }
 }

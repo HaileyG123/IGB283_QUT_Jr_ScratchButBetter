@@ -16,7 +16,8 @@ public class ArticulatedArm : MonoBehaviour
     
     public Vector3 jointLocation;
     public Vector3 jointOffset;
-    
+
+    private float angleTracker;
     public float angle;
     public float lastAngle;
     public float speed = 0.2f;
@@ -26,7 +27,8 @@ public class ArticulatedArm : MonoBehaviour
     
     public Mesh mesh;
     public Material mat;
-    private BoxCollider2D BC;
+    private PolygonCollider2D BC;
+    private Rigidbody2D rb2;
 
     private float timeElapsed = 0.0f;
 
@@ -49,6 +51,8 @@ public class ArticulatedArm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        
         //nodding
         if(child != null)
         {
@@ -56,10 +60,15 @@ public class ArticulatedArm : MonoBehaviour
                 jointLocation, angle, lastAngle);
         }
         
+        SyncColliderWithMesh();
+        
         // Recalculate the bounds of the mesh
         mesh.RecalculateBounds();
         
-        if (timeElapsed > 0.2f)
+        //if the current angle is great than the bounds then change direction of the angle
+        
+        
+        if (Mathf.Abs(angleTracker) >= angle)
         {
             float temp = lastAngle;
             
@@ -68,7 +77,17 @@ public class ArticulatedArm : MonoBehaviour
             
             timeElapsed = 0f;
             //Debug.Log("inside " + timeElapsed);
+
+            angleTracker = 0;
+            
+            Debug.Log("change");
         }
+        // else
+        // {
+        //     angleTracker += angle;
+        // }
+        
+        Debug.Log(angleTracker);
 
         timeElapsed += Time.deltaTime;
         //Debug.Log(timeElapsed);
@@ -89,6 +108,11 @@ public class ArticulatedArm : MonoBehaviour
         Matrix3x3 M = T2 * R2 * R1 * T1;
         //Matrix3x3 M = T2 * T1;
         
+        // Update the angleTracker with the current rotation angle
+        angleTracker += angle * Time.deltaTime * speed;
+        
+        
+        Debug.Log($"todays angle {angleTracker}");
         // Move the mesh
         Vector3[] vertices = mesh.vertices;
         
@@ -117,15 +141,18 @@ public class ArticulatedArm : MonoBehaviour
         //GameObject
         gameObject.AddComponent<MeshFilter>();
         gameObject.AddComponent<MeshRenderer>();
-        gameObject.AddComponent<BoxCollider2D>();
+        gameObject.AddComponent<PolygonCollider2D>();
+        gameObject.AddComponent<Rigidbody2D>();
         
         //set mat to the material we have selected 
         GetComponent<MeshRenderer>().material = mat;
         mesh = GetComponent<MeshFilter>().mesh;
 
-        BC = GetComponent<BoxCollider2D>();
-        BC.offset = mesh.bounds.center;
-        BC.size = mesh.bounds.size;
+        BC = GetComponent<PolygonCollider2D>();
+        rb2 = GetComponent<Rigidbody2D>();
+
+        rb2.bodyType = RigidbodyType2D.Kinematic;
+        
         
         Vector3[] tempArray = new Vector3[limbVertexLocations.Length];
         for (int i = 0; i < limbVertexLocations.Length; i++)
@@ -156,7 +183,30 @@ public class ArticulatedArm : MonoBehaviour
             };
         }
     }
-    
+
+    private void SyncColliderWithMesh()
+    {
+            // Get the mesh vertices
+            Vector3[] vertices = mesh.vertices;
+
+            // Convert mesh vertices to local space (if necessary)
+            // You may need to adjust this depending on your setup
+            for (int i = 0; i < vertices.Length; i++)
+            {
+                vertices[i] = transform.TransformPoint(vertices[i]);
+            }
+
+            // Update the PolygonCollider2D points with mesh vertices
+            Vector2[] colliderPoints = new Vector2[vertices.Length];
+            for (int i = 0; i < vertices.Length; i++)
+            {
+                colliderPoints[i] = new Vector2(vertices[i].x, vertices[i].y);
+            }
+
+            // Assign the updated points to the PolygonCollider2D
+            BC.SetPath(0, colliderPoints);
+    }
+
     public void MoveByOffset (Vector3 offset) {
         
         // Find the translation Matrix
@@ -179,6 +229,72 @@ public class ArticulatedArm : MonoBehaviour
         {
             child.GetComponent<ArticulatedArm>().MoveByOffset(offset);
         } 
+    }
+
+    public void FlipJunior()
+    {
+        // Move the point to the origin
+        Matrix3x3 T1 = Translate(-jointLocation);
+        // Undo the last rotation
+        Matrix3x3 F = Flip();
+        // Move the point back to the original position
+        Matrix3x3 T2 = Translate(jointLocation);
+        // Perform the new rotation
+        
+        // The final translation matrix
+        Matrix3x3 M = T2 * F * T1;
+        
+        
+        Vector3[] vertices = mesh.vertices; //setting the vertices for the translation
+        
+        //calculating the next position for the mesh
+        for (int i = 0; i < vertices.Length; i++)
+        {
+            vertices[i] = M.MultiplyPoint(vertices[i]);
+        }
+
+        mesh.vertices = vertices; //updating the mesh to it new position
+
+        jointLocation = M.MultiplyPoint(jointLocation);
+        
+        //to ensure all children are moving with their parent
+        if (child != null)
+        {
+            child.GetComponent<ArticulatedArm>().FlipJunior();
+        } 
+    }
+
+    public void ScaleJunior(Vector3 scaleOffset)
+    {
+        // Move the point to the origin
+        Matrix3x3 T1 = Translate(-jointLocation);
+        // Undo the last rotation
+        Matrix3x3 S = Scale(scaleOffset.x, scaleOffset.y);
+        // Move the point back to the original position
+        Matrix3x3 T2 = Translate(jointLocation);
+        // Perform the new rotation
+        
+        // The final translation matrix
+        Matrix3x3 M = T2 * S * T1;
+        
+        
+        Vector3[] vertices = mesh.vertices; //setting the vertices for the translation
+        
+        //calculating the next position for the mesh
+        for (int i = 0; i < vertices.Length; i++)
+        {
+            vertices[i] = M.MultiplyPoint(vertices[i]);
+        }
+
+        mesh.vertices = vertices; //updating the mesh to it new position
+
+        jointLocation = M.MultiplyPoint(jointLocation);
+        
+        //to ensure all children are moving with their parent
+        if (child != null)
+        {
+            child.GetComponent<ArticulatedArm>().ScaleJunior(scaleOffset);
+        }
     }
 
     // Rotate a vertex around the origin
@@ -208,6 +324,31 @@ public class ArticulatedArm : MonoBehaviour
         // Return the matrix
         return matrix;
     }
+
+    public static Matrix3x3 Flip()
+    {
+        Matrix3x3 matrix = new Matrix3x3();
+        
+        matrix.SetRow(0, new Vector3(-1f, 0.0f, 0.0f));
+        matrix.SetRow(1, new Vector3(0.0f, 1f, 0.0f));
+        matrix.SetRow(2, new Vector3(0.0f, 0.0f, 1.0f));
+        // Return the matrix
+        return matrix;
+    }
+    
+    public static Matrix3x3 Scale(float sx, float sy)
+    {
+        //Create a new matrix
+        Matrix3x3 matrix = new Matrix3x3();
+
+        // Set rows of the matrix
+        matrix.SetRow(0, new Vector3(sx, 0.0f, 0.0f));
+        matrix.SetRow(1, new Vector3(0.0f, sy, 0.0f));
+        matrix.SetRow(2, new Vector3(0.0f, 0.0f, 1.0f));
+
+        return matrix;
+    }
+    
 }
 
 

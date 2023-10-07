@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0.005, y: 0, z: 0}
+  scaleOffset: {x: 0.5, y: 0.5, z: 0}
   _base: {fileID: 1821273572}
   Boundary1: {fileID: 0}
   Boundary2: {fileID: 0}
@@ -241,8 +242,8 @@ RectTransform:
   m_Father: {fileID: 1924379519}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -394,7 +395,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -467,16 +468,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   child: {fileID: 1088105108}
   control: {fileID: 1612734428}
-  jointLocation: {x: 0, y: 2, z: 1}
-  jointOffset: {x: 0, y: 2, z: 1}
+  jointLocation: {x: 0, y: 1, z: 1}
+  jointOffset: {x: 0, y: 1, z: 1}
   angle: 0
   lastAngle: 0
   speed: 0.2
   limbVertexLocations:
-  - {x: -0.25, y: 0, z: 1}
-  - {x: -0.25, y: 2, z: 1}
-  - {x: 0.25, y: 2, z: 1}
-  - {x: 0.25, y: 0, z: 1}
+  - {x: -0.125, y: 0, z: 1}
+  - {x: -0.125, y: 1, z: 1}
+  - {x: 0.125, y: 1, z: 1}
+  - {x: 0.125, y: 0, z: 1}
   mesh: {fileID: 0}
   mat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!4 &404869500
@@ -510,7 +511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &419448961
 RectTransform:
   m_ObjectHideFlags: 0
@@ -638,7 +639,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &685075999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,7 +748,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -806,7 +807,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &838681192
 RectTransform:
   m_ObjectHideFlags: 0
@@ -976,16 +977,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   child: {fileID: 2060747454}
   control: {fileID: 685075998}
-  jointLocation: {x: 0, y: 2, z: 1}
-  jointOffset: {x: 0, y: 2, z: 1}
-  angle: 10
+  jointLocation: {x: 0, y: 1, z: 1}
+  jointOffset: {x: 0, y: 1, z: 1}
+  angle: 90
   lastAngle: 0
   speed: 0.2
   limbVertexLocations:
-  - {x: -0.25, y: 0, z: 1}
-  - {x: -0.25, y: 2, z: 1}
-  - {x: 0.25, y: 2, z: 1}
-  - {x: 0.25, y: 0, z: 1}
+  - {x: -0.125, y: 0, z: 1}
+  - {x: -0.125, y: 1, z: 1}
+  - {x: 0.125, y: 1, z: 1}
+  - {x: 0.125, y: 0, z: 1}
   mesh: {fileID: 0}
   mat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!4 &1088105110
@@ -1020,7 +1021,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1159892025
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1193,7 +1194,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1305,8 +1306,8 @@ RectTransform:
   m_Father: {fileID: 150358221}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1365,7 +1366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1576309307
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1445,7 +1446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1595030078
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1524,7 +1525,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1612734429
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1735,7 +1736,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1773224311}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.09, y: -0.27, z: 0.035800718}
+  m_LocalPosition: {x: -8.79, y: -0.27, z: 0}
   m_LocalScale: {x: 1, y: 10.460048, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1767,7 +1768,7 @@ GameObject:
   - component: {fileID: 1821273572}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Mesh
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1792,10 +1793,10 @@ MonoBehaviour:
   lastAngle: 0
   speed: 0.2
   limbVertexLocations:
-  - {x: -1, y: -1, z: 1}
-  - {x: -1, y: 0, z: 1}
-  - {x: 1, y: 0, z: 1}
-  - {x: 1, y: -1, z: 1}
+  - {x: -0.5, y: -0.5, z: 1}
+  - {x: -0.5, y: 0, z: 1}
+  - {x: 0.5, y: 0, z: 1}
+  - {x: 0.5, y: -0.5, z: 1}
   mesh: {fileID: 0}
   mat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!4 &1821273573
@@ -1830,7 +1831,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1869839108
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1982,7 +1983,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977575902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.74, y: -0.27, z: 0.035800718}
+  m_LocalPosition: {x: 8.86, y: -0.27, z: 0}
   m_LocalScale: {x: 1, y: 10.460048, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2056,7 +2057,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1993557710
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2220,8 +2221,8 @@ RectTransform:
   m_Father: {fileID: 555857577}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2332,14 +2333,14 @@ MonoBehaviour:
   child: {fileID: 0}
   control: {fileID: 0}
   jointLocation: {x: 0, y: 0, z: 1}
-  jointOffset: {x: 0, y: 2, z: 1}
+  jointOffset: {x: 0, y: 0.75, z: 1}
   angle: 0
   lastAngle: 0
-  speed: 0.2
+  speed: 0.05
   limbVertexLocations:
-  - {x: -1, y: 1, z: 1}
+  - {x: -0.5, y: 0.75, z: 1}
   - {x: 0, y: 0, z: 1}
-  - {x: 0, y: 1, z: 1}
+  - {x: 0.5, y: 0.75, z: 1}
   mesh: {fileID: 0}
   mat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!4 &2060747456

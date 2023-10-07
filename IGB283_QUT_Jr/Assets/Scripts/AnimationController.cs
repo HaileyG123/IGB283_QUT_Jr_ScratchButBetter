@@ -6,6 +6,8 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     public Vector3 offset = new Vector3(0.0f, 1f, 0.0f);
+    
+    public Vector3 scaleOffset;
     public ArticulatedArm _base;
 
     public Collider2D Boundary1;
@@ -15,7 +17,6 @@ public class AnimationController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -24,10 +25,6 @@ public class AnimationController : MonoBehaviour
         _base.MoveByOffset(offset);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        
-    }
     
     
 }
