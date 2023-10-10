@@ -11,6 +11,11 @@ public class AnimationController : MonoBehaviour
     
     public ArticulatedArm _base;
 
+    public bool isControlled = false;
+
+    public float delay;
+    public float totalDelay;
+    
     public bool task2 = true;
     public bool task3 = true;
     
@@ -18,17 +23,20 @@ public class AnimationController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (task2)
+        input();
+        
+        if (task2 && !isControlled)
         {
             _base.MoveByOffset(offset);
         }
 
-        if (task3)
+        if (task3 && !isControlled)
         {
             MoveUpDown();
         }
@@ -45,5 +53,53 @@ public class AnimationController : MonoBehaviour
             jumpOffset = -jumpOffset;
             jumpCounter = 0;
         }
+    }
+
+    void input()
+    {
+        //if the player presses a or d then the mesh will go in the direction it was pressed 
+        if (Input.GetKey(KeyCode.A))
+        {
+            _base.MoveByOffset(-offset);
+            isControlled = true;
+            totalDelay = delay + Time.time; //resetting the delay to the new Time based on in game world time 
+        }
+        else if(Input.GetKey(KeyCode.D))
+        {
+            _base.MoveByOffset(offset);
+            isControlled = true;
+            totalDelay = delay + Time.time;
+        }
+        else if(Input.GetKeyDown(KeyCode.S))
+        {
+            MoveUpDown();
+            task2 = true;
+            task3 = false;
+        }
+        else
+        {
+        }
+        
+        if(Time.time > totalDelay)// when no input is being pressed then turn back on auto
+        {
+            Debug.Log("waiting done");
+            isControlled = false;
+        }
+        
+    }
+    //not currently used but dont want to delete yet
+    IEnumerator IsControlled()
+    {
+        // Debug.Log("hi");
+        float timeDelay = 0f;
+                Debug.Log("yes1");
+                timeDelay = 2f;
+                yield return new WaitForSeconds(timeDelay);
+                task2 = true;
+                task3 = true;
+                isControlled = false;
+
+
+
     }
 }

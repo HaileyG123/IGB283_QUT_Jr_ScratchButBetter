@@ -155,6 +155,9 @@ MonoBehaviour:
   offset: {x: 0.01, y: 0, z: 0}
   jumpOffset: {x: 0, y: 0.01, z: 0}
   _base: {fileID: 1821273572}
+  isControlled: 0
+  delay: 2
+  totalDelay: 0
   task2: 1
   task3: 1
 --- !u!4 &29937985
