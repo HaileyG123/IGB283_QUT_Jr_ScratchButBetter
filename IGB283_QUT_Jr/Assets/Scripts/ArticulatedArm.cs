@@ -51,8 +51,6 @@ public class ArticulatedArm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
         //nodding
         if(child != null)
         {
@@ -68,7 +66,8 @@ public class ArticulatedArm : MonoBehaviour
         //if the current angle is great than the bounds then change direction of the angle
         
         
-        if (Mathf.Abs(angleTracker) >= angle)
+        //if (Mathf.Abs(angleTracker) >= angle)
+        if(timeElapsed > 0.2f)
         {
             float temp = lastAngle;
             
@@ -87,7 +86,7 @@ public class ArticulatedArm : MonoBehaviour
         //     angleTracker += angle;
         // }
         
-        Debug.Log(angleTracker);
+        //Debug.Log(angleTracker);
 
         timeElapsed += Time.deltaTime;
         //Debug.Log(timeElapsed);
@@ -112,7 +111,7 @@ public class ArticulatedArm : MonoBehaviour
         angleTracker += angle * Time.deltaTime * speed;
         
         
-        Debug.Log($"todays angle {angleTracker}");
+        //Debug.Log($"todays angle {angleTracker}");
         // Move the mesh
         Vector3[] vertices = mesh.vertices;
         
@@ -262,6 +261,12 @@ public class ArticulatedArm : MonoBehaviour
         {
             child.GetComponent<ArticulatedArm>().FlipJunior();
         } 
+        
+        //recalculate angle
+        float temp = lastAngle;
+            
+        lastAngle = angle;
+        angle = temp;
     }
 
     public void ScaleJunior(Vector3 scaleOffset)
