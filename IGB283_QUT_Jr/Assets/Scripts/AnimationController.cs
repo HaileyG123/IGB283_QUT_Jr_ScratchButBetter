@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class AnimationController : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class AnimationController : MonoBehaviour
     public ArticulatedArm _base;
 
     public float end;
+    public float boundaryBottom;
 
     public bool isControlled = false;
 
@@ -21,23 +23,60 @@ public class AnimationController : MonoBehaviour
     public bool task2 = true;
     public bool task3 = true;
     
+    //artifical gravity
+    public float gravity;
+    public Vector2 velocity;
+    public float jumpForceNatural;
+    public float jumpForceControlled;
+    
+    //to keep track of the state the mesh is in
+    public enum states
+    {
+        grounded,
+        airTime
+    }
+
+    private states meshesState;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+     
     }
 
     // Update is called once per frame
     void Update()
     {
+        offset.y = 0; // to ensure the mesh obeys the bottom boundary
+        
+        //checks to see if the mesh is above the mesh boundary to which then if it apply gravity 
+        if(_base.mesh.bounds.min.y > boundaryBottom)
+        {
+            meshesState = states.airTime;
+            velocity.y -= gravity * Time.deltaTime;
+            offset.y += velocity.y;
+        }
+        else
+        {
+            meshesState = states.grounded;
+        }
+        
+        
+        Debug.Log(meshesState);
+
+        if (meshesState == states.grounded)
+        {
+            velocity.y = jumpForceNatural;
+            offset.y += velocity.y;
+        }
+        
         //Move between two points
-        if(Mathf.Abs(_base.mesh.bounds.center.x) > end)
+        if(Mathf.Abs(_base.mesh.bounds.max.x) > end || Mathf.Abs(_base.mesh.bounds.min.x) > end)
         {
             Debug.Log(_base.mesh.bounds.center.x);
             //end = -end;
             
-            offset = -offset;
+            offset.x = -offset.x;
             _base.FlipJunior();
             // scaleOffset = -scaleOffset;
         }
@@ -46,9 +85,9 @@ public class AnimationController : MonoBehaviour
         
         if (task2)
         {
-            _base.MoveByOffset(offset);
+            _base.MoveByOffset(offset * Time.deltaTime);
         }
-        
+         
         
 
         // if (task3)
@@ -135,11 +174,10 @@ public class AnimationController : MonoBehaviour
             offset.x = -offset.x;
             _base.FlipJunior();
         }
-        else if(Input.GetKeyDown(KeyCode.S))
+        else if(Input.GetKeyDown(KeyCode.W))
         {
-            MoveUpDown();
-            task2 = true;
-            task3 = false;
+            velocity.y = jumpForceControlled; //applys the force needed
+            offset.y += velocity.y; //pushes the mesh just enough above the bounds to activate the jump
         }
         else
         {
