@@ -155,6 +155,7 @@ MonoBehaviour:
   offset: {x: 0.01, y: 0, z: 0}
   jumpOffset: {x: 0, y: 0.01, z: 0}
   _base: {fileID: 1821273572}
+  end: 9
   isControlled: 0
   delay: 2
   totalDelay: 0
@@ -562,10 +563,10 @@ MonoBehaviour:
   lastAngle: 0
   speed: 0.2
   limbVertexLocations:
-  - {x: -0.125, y: 0, z: 1}
-  - {x: -0.125, y: 1, z: 1}
-  - {x: 0.125, y: 1, z: 1}
   - {x: 0.125, y: 0, z: 1}
+  - {x: 0.125, y: 1, z: 1}
+  - {x: -0.125, y: 1, z: 1}
+  - {x: -0.125, y: 0, z: 1}
   mesh: {fileID: 0}
   mat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!4 &404869500
@@ -1900,7 +1901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1773224312
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2147,7 +2148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1977575903
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2537,9 +2538,9 @@ MonoBehaviour:
   lastAngle: 0
   speed: 0.05
   limbVertexLocations:
-  - {x: -0.5, y: 0.75, z: 1}
+  - {x: 0.5, y: -0.75, z: 1}
   - {x: 0, y: 0, z: 1}
-  - {x: 0.5, y: 0.75, z: 1}
+  - {x: -0.5, y: -0.75, z: 1}
   mesh: {fileID: 0}
   mat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!4 &2060747456

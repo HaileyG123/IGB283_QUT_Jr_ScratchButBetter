@@ -11,6 +11,8 @@ public class AnimationController : MonoBehaviour
     
     public ArticulatedArm _base;
 
+    public float end;
+
     public bool isControlled = false;
 
     public float delay;
@@ -29,17 +31,30 @@ public class AnimationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        input();
+        //Move between two points
+        if(Mathf.Abs(_base.mesh.bounds.center.x) > end)
+        {
+            Debug.Log(_base.mesh.bounds.center.x);
+            //end = -end;
+            
+            offset = -offset;
+            _base.FlipJunior();
+            // scaleOffset = -scaleOffset;
+        }
         
-        if (task2 && !isControlled)
+        inputPT2();
+        
+        if (task2)
         {
             _base.MoveByOffset(offset);
         }
+        
+        
 
-        if (task3 && !isControlled)
-        {
-            MoveUpDown();
-        }
+        // if (task3)
+        // {
+        //     MoveUpDown();
+        // }
     }
 
     private void MoveUpDown()
@@ -61,14 +76,64 @@ public class AnimationController : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             _base.MoveByOffset(-offset);
-            isControlled = true;
+            // isControlled = true;
             totalDelay = delay + Time.time; //resetting the delay to the new Time based on in game world time 
+            
+            task2 = false;
+            task3 = false;
         }
         else if(Input.GetKey(KeyCode.D))
         {
             _base.MoveByOffset(offset);
-            isControlled = true;
+            // isControlled = true;
             totalDelay = delay + Time.time;
+            
+            task2 = false;
+            task3 = false;
+        }
+        else if(Input.GetKeyDown(KeyCode.S))
+        {
+            MoveUpDown();
+            task2 = true;
+            task3 = false;
+        }
+        else
+        {
+            task2 = true;
+            task3 = false;
+        }
+
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            task2 = true;
+            task3 = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.D))
+        {
+            task2 = true;
+            task3 = true;
+        }
+        
+        // if(Time.time > totalDelay)// when no input is being pressed then turn back on auto
+        // {
+        //     Debug.Log("waiting done");
+        //     isControlled = false;
+        // }
+        
+    }
+    
+    void inputPT2()
+    {
+        //if the player presses a or d then the mesh will go in the direction it was pressed 
+        if (Input.GetKey(KeyCode.A) && offset.x > 0)
+        {
+            offset.x = -offset.x;
+            _base.FlipJunior();
+        }
+        else if(Input.GetKey(KeyCode.D) && offset.x < 0)
+        {
+            offset.x = -offset.x;
+            _base.FlipJunior();
         }
         else if(Input.GetKeyDown(KeyCode.S))
         {
@@ -79,12 +144,23 @@ public class AnimationController : MonoBehaviour
         else
         {
         }
+
+        // if (Input.GetKeyUp(KeyCode.A))
+        // {
+        //     task2 = true;
+        //     task3 = true;
+        // }
+        // else if (Input.GetKeyUp(KeyCode.D))
+        // {
+        //     task2 = true;
+        //     task3 = true;
+        // }
         
-        if(Time.time > totalDelay)// when no input is being pressed then turn back on auto
-        {
-            Debug.Log("waiting done");
-            isControlled = false;
-        }
+        // if(Time.time > totalDelay)// when no input is being pressed then turn back on auto
+        // {
+        //     Debug.Log("waiting done");
+        //     isControlled = false;
+        // }
         
     }
     //not currently used but dont want to delete yet
