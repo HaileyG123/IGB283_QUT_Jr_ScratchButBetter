@@ -149,8 +149,14 @@ public class AnimationController : MonoBehaviour
         {
             offset.x = 0;
             offset.y = 0;
+
+            lowerArm.nodding = false;
+
+            upperArm.RotateAroundPoint(_base.jointLocation, 90, _base.lastAngle);
+            //false slider class and restore rotation code from workshop 7
+            //modify false slider value
+            //remove every call to rotate around point other than the workshop
             
-            lowerArm.RotateAroundPoint(lowerArm.jointLocation, 90, lowerArm.lastAngle);
             //StartCoroutine(Collapse());
         }
         

@@ -155,8 +155,8 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   jumpOffset: {x: 0, y: 0.01, z: 0}
   _base: {fileID: 1821273572}
-  upperArm: {fileID: 1088105109}
-  lowerArm: {fileID: 404869499}
+  upperArm: {fileID: 404869499}
+  lowerArm: {fileID: 1088105109}
   end: 9
   boundaryBottom: -0.5
   isControlled: 0
@@ -576,6 +576,7 @@ MonoBehaviour:
   - {x: -0.125, y: 0, z: 1}
   mesh: {fileID: 0}
   mat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  nodding: 0
 --- !u!4 &404869500
 Transform:
   m_ObjectHideFlags: 0
@@ -1085,6 +1086,7 @@ MonoBehaviour:
   - {x: 0.125, y: 0, z: 1}
   mesh: {fileID: 0}
   mat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  nodding: 1
 --- !u!4 &1088105110
 Transform:
   m_ObjectHideFlags: 0
@@ -2006,6 +2008,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 1}
   mesh: {fileID: 0}
   mat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  nodding: 0
 --- !u!4 &1821273573
 Transform:
   m_ObjectHideFlags: 0
@@ -2550,6 +2553,7 @@ MonoBehaviour:
   - {x: -0.5, y: -0.75, z: 1}
   mesh: {fileID: 0}
   mat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  nodding: 1
 --- !u!4 &2060747456
 Transform:
   m_ObjectHideFlags: 0

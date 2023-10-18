@@ -31,6 +31,7 @@ public class ArticulatedArm : MonoBehaviour
     private Rigidbody2D rb2;
 
     private float timeElapsed = 0.0f;
+    public bool nodding = true;
 
     private void Awake()
     {
@@ -52,44 +53,47 @@ public class ArticulatedArm : MonoBehaviour
     void Update()
     {
         //nodding
-        if(child != null)
+        if (nodding)
         {
-            child.GetComponent<ArticulatedArm>().RotateAroundPoint(
-                jointLocation, angle, lastAngle);
+            if(child != null)
+            {
+                child.GetComponent<ArticulatedArm>().RotateAroundPoint(
+                    jointLocation, angle, lastAngle);
+            } 
+            if(timeElapsed > 0.2f)
+            {
+                float temp = lastAngle;
+            
+                lastAngle = angle;
+                angle = temp;
+            
+                timeElapsed = 0f;
+                //Debug.Log("inside " + timeElapsed);
+
+                angleTracker = 0;
+            
+                Debug.Log("change");
+            }
+            timeElapsed += Time.deltaTime;
+        }
+        else
+        {
+            lastAngle = angle;
+            if(control != null)
+            {
+                angle = control.GetComponent<Slider>().value;
+            } 
+
+            if(child != null)
+            {
+                child.GetComponent<ArticulatedArm>().RotateAroundPoint(jointLocation, angle, lastAngle);
+            }
         }
         
-        SyncColliderWithMesh();
+        //SyncColliderWithMesh();
         
         // Recalculate the bounds of the mesh
         mesh.RecalculateBounds();
-        
-        //if the current angle is great than the bounds then change direction of the angle
-        
-        
-        //if (Mathf.Abs(angleTracker) >= angle)
-        if(timeElapsed > 0.2f)
-        {
-            float temp = lastAngle;
-            
-            lastAngle = angle;
-            angle = temp;
-            
-            timeElapsed = 0f;
-            //Debug.Log("inside " + timeElapsed);
-
-            angleTracker = 0;
-            
-            Debug.Log("change");
-        }
-        // else
-        // {
-        //     angleTracker += angle;
-        // }
-        
-        //Debug.Log(angleTracker);
-
-        timeElapsed += Time.deltaTime;
-        //Debug.Log(timeElapsed);
     }
     //Rotate the limb around a point 
     public void RotateAroundPoint(Vector3 point, float angle,
