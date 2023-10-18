@@ -9,8 +9,12 @@ public class AnimationController : MonoBehaviour
     public Vector3 offset = new Vector3(0.0f, 1f, 0.0f);
     public Vector3 jumpOffset = new Vector3(0.0f, 0.2f, 0.0f);
     private float jumpCounter = 0f;
+    //private float offsetX = 3;
+    private int direction = 1;
     
     public ArticulatedArm _base;
+    public ArticulatedArm upperArm;
+    public ArticulatedArm lowerArm;
 
     public float end;
     public float boundaryBottom;
@@ -41,7 +45,19 @@ public class AnimationController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     
+        //offset.x = offsetX;
+        if (offset.x < 0)
+        {
+            direction = -direction;
+        }
+        else if (offset.x == 0)
+        {
+            Debug.Log("invalid start offset");
+        }
+        else
+        {
+            direction = direction;
+        }
     }
 
     // Update is called once per frame
@@ -49,7 +65,7 @@ public class AnimationController : MonoBehaviour
     {
         offset.y = 0; // to ensure the mesh obeys the bottom boundary
         
-        //checks to see if the mesh is above the mesh boundary to which then if it apply gravity 
+        //checks to see if the mesh is above the mesh boundary to which then if it is apply gravity 
         if(_base.mesh.bounds.min.y > boundaryBottom)
         {
             meshesState = states.airTime;
@@ -68,6 +84,14 @@ public class AnimationController : MonoBehaviour
         {
             velocity.y = jumpForceNatural;
             offset.y += velocity.y;
+            if (direction == 1)
+            {
+                offset.x = 3;
+            }
+            else
+            {
+                offset.x = -3;
+            }
         }
         
         //Move between two points
@@ -79,6 +103,7 @@ public class AnimationController : MonoBehaviour
             offset.x = -offset.x;
             _base.FlipJunior();
             // scaleOffset = -scaleOffset;
+            direction = -direction;
         }
         
         inputPT2();
@@ -87,78 +112,11 @@ public class AnimationController : MonoBehaviour
         {
             _base.MoveByOffset(offset * Time.deltaTime);
         }
-         
-        
 
         // if (task3)
         // {
         //     MoveUpDown();
         // }
-    }
-
-    private void MoveUpDown()
-    {
-        _base.MoveByOffset(jumpOffset);
-        jumpCounter += jumpOffset.y;
-        //Debug.Log("jumpCounter " + jumpCounter);
-        
-        if (Mathf.Abs(jumpCounter) >= 5f)
-        {
-            jumpOffset = -jumpOffset;
-            jumpCounter = 0;
-        }
-    }
-
-    void input()
-    {
-        //if the player presses a or d then the mesh will go in the direction it was pressed 
-        if (Input.GetKey(KeyCode.A))
-        {
-            _base.MoveByOffset(-offset);
-            // isControlled = true;
-            totalDelay = delay + Time.time; //resetting the delay to the new Time based on in game world time 
-            
-            task2 = false;
-            task3 = false;
-        }
-        else if(Input.GetKey(KeyCode.D))
-        {
-            _base.MoveByOffset(offset);
-            // isControlled = true;
-            totalDelay = delay + Time.time;
-            
-            task2 = false;
-            task3 = false;
-        }
-        else if(Input.GetKeyDown(KeyCode.S))
-        {
-            MoveUpDown();
-            task2 = true;
-            task3 = false;
-        }
-        else
-        {
-            task2 = true;
-            task3 = false;
-        }
-
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            task2 = true;
-            task3 = true;
-        }
-        else if (Input.GetKeyUp(KeyCode.D))
-        {
-            task2 = true;
-            task3 = true;
-        }
-        
-        // if(Time.time > totalDelay)// when no input is being pressed then turn back on auto
-        // {
-        //     Debug.Log("waiting done");
-        //     isControlled = false;
-        // }
-        
     }
     
     void inputPT2()
@@ -168,31 +126,33 @@ public class AnimationController : MonoBehaviour
         {
             offset.x = -offset.x;
             _base.FlipJunior();
+            direction = -direction;
         }
         else if(Input.GetKey(KeyCode.D) && offset.x < 0)
         {
             offset.x = -offset.x;
             _base.FlipJunior();
+            direction = -direction;
         }
         else if(Input.GetKeyDown(KeyCode.W))
         {
             velocity.y = jumpForceControlled; //applys the force needed
             offset.y += velocity.y; //pushes the mesh just enough above the bounds to activate the jump
+            offset.x = 0;
         }
-        else
+        else if(Input.GetKeyDown(KeyCode.S))
         {
+            velocity.y = jumpForceControlled; //applys the force needed
+            offset.y += velocity.y; //pushes the mesh just enough above the bounds to activate the jump
         }
-
-        // if (Input.GetKeyUp(KeyCode.A))
-        // {
-        //     task2 = true;
-        //     task3 = true;
-        // }
-        // else if (Input.GetKeyUp(KeyCode.D))
-        // {
-        //     task2 = true;
-        //     task3 = true;
-        // }
+        else if (Input.GetKeyDown(KeyCode.Z))
+        {
+            offset.x = 0;
+            offset.y = 0;
+            
+            lowerArm.RotateAroundPoint(lowerArm.jointLocation, 90, lowerArm.lastAngle);
+            //StartCoroutine(Collapse());
+        }
         
         // if(Time.time > totalDelay)// when no input is being pressed then turn back on auto
         // {
@@ -201,10 +161,28 @@ public class AnimationController : MonoBehaviour
         // }
         
     }
+
+    IEnumerator Collapse()
+    {
+        Debug.Log("this has fired");
+        //rotate upper arm by 45 degrees
+        upperArm.RotateAroundPoint(upperArm.jointLocation, -45, upperArm.lastAngle);
+        //wait 0.5 secs
+        yield return new WaitForSeconds(0.5f);
+        //rotate lower arm by 45 degrees
+        lowerArm.RotateAroundPoint(lowerArm.jointLocation, -45, upperArm.lastAngle);
+        //wait a bit
+        yield return new WaitForSeconds(2.5f);
+        //reverse that rotation
+        lowerArm.RotateAroundPoint(lowerArm.jointLocation, 45, upperArm.lastAngle);
+        yield return new WaitForSeconds(0.5f);
+        upperArm.RotateAroundPoint(upperArm.jointLocation, 45, lowerArm.lastAngle);
+        yield return new WaitForSeconds(1f);
+    }
+    
     //not currently used but dont want to delete yet
     IEnumerator IsControlled()
     {
-        // Debug.Log("hi");
         float timeDelay = 0f;
                 Debug.Log("yes1");
                 timeDelay = 2f;
@@ -212,8 +190,18 @@ public class AnimationController : MonoBehaviour
                 task2 = true;
                 task3 = true;
                 isControlled = false;
-
-
-
+    }
+    
+    //not used but keep just in case
+    private void MoveUpDown()
+    {
+        _base.MoveByOffset(jumpOffset);
+        jumpCounter += jumpOffset.y;
+        
+        if (Mathf.Abs(jumpCounter) >= 5f)
+        {
+            jumpOffset = -jumpOffset;
+            jumpCounter = 0;
+        }
     }
 }
