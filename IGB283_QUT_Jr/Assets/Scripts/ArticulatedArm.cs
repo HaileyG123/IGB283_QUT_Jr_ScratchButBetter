@@ -24,6 +24,7 @@ public class ArticulatedArm : MonoBehaviour
     public Vector3[] limbVertexLocations;
 
     private Color[] colours;
+    public Color colour;
     
     public Mesh mesh;
     public Material mat;
@@ -161,7 +162,7 @@ public class ArticulatedArm : MonoBehaviour
         for (int i = 0; i < limbVertexLocations.Length; i++)
         {
             tempArray[i] = limbVertexLocations[i]; // sets the vertex locations through a loop
-            colours[i] = new Color(0.8f, 0.3f, 0.3f, 1.0f);
+            colours[i] = new Color(colour.r, colour.g, colour.b);
         }
         
         mesh.vertices = tempArray;

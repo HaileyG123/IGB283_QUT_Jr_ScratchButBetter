@@ -84,7 +84,7 @@ public class IGB283Transform : MonoBehaviour
     /// </summary>
     /// <param name="V1">vector of interest</param>
     /// <returns>the magnitude of the vector parameter</returns>
-    public double GetMagnitude(Vector3 V1)
+    public static double GetMagnitude(Vector3 V1)
     {
         double magnitude = Math.Sqrt((V1.x * V1.x) + (V1.y * V1.y) + (V1.z * V1.z));
 
@@ -97,7 +97,7 @@ public class IGB283Transform : MonoBehaviour
     /// <param name="Q">a point</param>
     /// <param name="P">another point</param>
     /// <returns>the vector that goes from point P to Q</returns>
-    public Vector3 GetVectorFromPoints(Vector3 Q, Vector3 P)
+    public static Vector3 GetVectorFromPoints(Vector3 Q, Vector3 P)
     {
         Vector3 V = P - Q;
 

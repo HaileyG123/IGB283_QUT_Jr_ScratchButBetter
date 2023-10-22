@@ -6,26 +6,39 @@ using UnityEngine.Serialization;
 
 public class AnimationController : MonoBehaviour
 {
-    public Vector3 offset = new Vector3(0.0f, 1f, 0.0f);
+    [Header("Movement")]
+    public Vector3 offset = new Vector3(3f, 1f, 0.0f);
     public Vector3 jumpOffset = new Vector3(0.0f, 0.2f, 0.0f);
     private float jumpCounter = 0f;
-    //private float offsetX = 3;
+    private float offsetX;
     private int direction = 1;
     
+    [Header("Figure")]
     public ArticulatedArm _base;
     public ArticulatedArm upperArm;
     public ArticulatedArm lowerArm;
 
+    [Header("Controls")] 
+    public string moveLeft;
+    public string moveRight;
+    public string jumpUp;
+    public string jumpForward;
+    public string collapse;
+    
+
+    [Header("Boundaries")]
     public float end;
     public float boundaryBottom;
 
     public bool isControlled = false;
 
-    public float delay;
-    public float totalDelay;
+    //public float delay;
+    //public float totalDelay;
     
+    [Header("Modes")]
     public bool task2 = true;
     public bool task3 = true;
+    public bool twoPlayerMode = true;
     
     //artifical gravity
     public float gravity;
@@ -45,7 +58,7 @@ public class AnimationController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //offset.x = offsetX;
+        offsetX = offset.x;
         if (offset.x < 0)
         {
             direction = -direction;
@@ -97,7 +110,7 @@ public class AnimationController : MonoBehaviour
         //Move between two points
         if(Mathf.Abs(_base.mesh.bounds.max.x) > end || Mathf.Abs(_base.mesh.bounds.min.x) > end)
         {
-            Debug.Log(_base.mesh.bounds.center.x);
+            //Debug.Log(_base.mesh.bounds.center.x);
             //end = -end;
             
             offset.x = -offset.x;
@@ -122,30 +135,30 @@ public class AnimationController : MonoBehaviour
     void inputPT2()
     {
         //if the player presses a or d then the mesh will go in the direction it was pressed 
-        if (Input.GetKey(KeyCode.A) && offset.x > 0)
+        if (Input.GetKey(moveLeft) && offset.x > 0)
         {
             offset.x = -offset.x;
             _base.FlipJunior();
             direction = -direction;
         }
-        else if(Input.GetKey(KeyCode.D) && offset.x < 0)
+        else if(Input.GetKey(moveRight) && offset.x < 0)
         {
             offset.x = -offset.x;
             _base.FlipJunior();
             direction = -direction;
         }
-        else if(Input.GetKeyDown(KeyCode.W))
+        else if(Input.GetKeyDown(jumpUp))
         {
             velocity.y = jumpForceControlled; //applys the force needed
             offset.y += velocity.y; //pushes the mesh just enough above the bounds to activate the jump
             offset.x = 0;
         }
-        else if(Input.GetKeyDown(KeyCode.S))
+        else if(Input.GetKeyDown(jumpForward))
         {
             velocity.y = jumpForceControlled; //applys the force needed
             offset.y += velocity.y; //pushes the mesh just enough above the bounds to activate the jump
         }
-        else if (Input.GetKeyDown(KeyCode.Z))
+        else if (Input.GetKeyDown(collapse))
         {
             offset.x = 0;
             offset.y = 0;
