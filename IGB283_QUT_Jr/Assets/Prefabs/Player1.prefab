@@ -189,6 +189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 345759050427207678}
   - component: {fileID: 6923169377944446125}
+  - component: {fileID: 3188475862185329631}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -229,6 +230,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _base: {fileID: 345759049759661437}
+--- !u!114 &3188475862185329631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345759050427207679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f53d673a8fead74687862233b0277fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 3, y: 0, z: 0}
+  jumpOffset: {x: 0, y: 0.01, z: 0}
+  _base: {fileID: 345759049759661437}
+  upperArm: {fileID: 345759051161969122}
+  lowerArm: {fileID: 345759050225965580}
+  input: {fileID: 0}
+  end: 9
+  boundaryBottom: -0.5
+  isControlled: 0
+  task2: 1
+  task3: 1
+  twoPlayerMode: 1
+  gravity: 9
+  velocity: {x: 0, y: 0}
+  jumpForceNatural: 5
+  jumpForceControlled: 10
 --- !u!1 &345759051161969123
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +357,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 345759051315650982}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f53d673a8fead74687862233b0277fa, type: 3}
   m_Name: 
@@ -338,11 +367,7 @@ MonoBehaviour:
   _base: {fileID: 345759049759661437}
   upperArm: {fileID: 345759051161969122}
   lowerArm: {fileID: 345759050225965580}
-  moveLeft: a
-  moveRight: d
-  jumpUp: w
-  jumpForward: s
-  collapse: z
+  input: {fileID: 0}
   end: 9
   boundaryBottom: -0.5
   isControlled: 0

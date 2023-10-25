@@ -19,12 +19,13 @@ public class AnimationController : MonoBehaviour
     public ArticulatedArm lowerArm;
 
     [Header("Controls")] 
-    public string moveLeft;
-    public string moveRight;
-    public string jumpUp;
-    public string jumpForward;
-    public string collapse;
-    
+    // public string moveLeft;
+    // public string moveRight;
+    // public string jumpUp;
+    // public string jumpForward;
+    // public string collapse;
+
+    public InputSystem input;
 
     [Header("Boundaries")]
     public float end;
@@ -135,30 +136,30 @@ public class AnimationController : MonoBehaviour
     void inputPT2()
     {
         //if the player presses a or d then the mesh will go in the direction it was pressed 
-        if (Input.GetKey(moveLeft) && offset.x > 0)
+        if (Input.GetKey(input.moveLeft) && offset.x > 0)
         {
             offset.x = -offset.x;
             _base.FlipJunior();
             direction = -direction;
         }
-        else if(Input.GetKey(moveRight) && offset.x < 0)
+        else if(Input.GetKey(input.moveRight) && offset.x < 0)
         {
             offset.x = -offset.x;
             _base.FlipJunior();
             direction = -direction;
         }
-        else if(Input.GetKeyDown(jumpUp))
+        else if(Input.GetKeyDown(input.jumpUp))
         {
             velocity.y = jumpForceControlled; //applys the force needed
             offset.y += velocity.y; //pushes the mesh just enough above the bounds to activate the jump
             offset.x = 0;
         }
-        else if(Input.GetKeyDown(jumpForward))
+        else if(Input.GetKeyDown(input.jumpForward))
         {
             velocity.y = jumpForceControlled; //applys the force needed
             offset.y += velocity.y; //pushes the mesh just enough above the bounds to activate the jump
         }
-        else if (Input.GetKeyDown(collapse))
+        else if (Input.GetKeyDown(input.dieTemporarily))
         {
             offset.x = 0;
             offset.y = 0;

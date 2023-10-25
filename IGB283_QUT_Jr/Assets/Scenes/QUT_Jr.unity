@@ -879,13 +879,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CS: {fileID: 1710910973}
   player: {fileID: 345759050427207679, guid: 7a1770d00f78e174abb1e6a5a0c88099, type: 3}
+  includeYourSibling: 1
+  activateTwoPlayer: 101
   spawningPoints:
   - startPosition: {x: 1, y: 0, z: 1}
     endPosition: {x: 0, y: 0, z: 1}
     colour: {r: 1, g: 0, b: 0, a: 0}
+    input: {fileID: 11400000, guid: 63d043442727fa042afda7842a740ce1, type: 2}
   - startPosition: {x: -1, y: 0, z: 1}
     endPosition: {x: 0, y: 0, z: 1}
-    colour: {r: 0.0071134567, g: 1, b: 0, a: 0}
+    colour: {r: 1, g: 0, b: 0, a: 0}
+    input: {fileID: 11400000, guid: 48b939f6eb64c8b47a98ff7a18dcebbc, type: 2}
 --- !u!4 &847877963
 Transform:
   m_ObjectHideFlags: 0

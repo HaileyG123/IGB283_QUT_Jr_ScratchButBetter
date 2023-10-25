@@ -15,11 +15,14 @@ public class PlayerSpawner : MonoBehaviour
     private List<GameObject> players = new List<GameObject>();
     private ArticulatedArm AA;
     private double distanceToTravel;
+
+    public bool includeYourSibling;
+    public KeyCode activateTwoPlayer;
     
     public List<spawnPoints> spawningPoints = new List<spawnPoints>(); //sets of spawn points
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //getting the needed scripts to calcualte 
         transformScript = GetComponent<IGB283Transform>();
@@ -37,7 +40,7 @@ public class PlayerSpawner : MonoBehaviour
             
             copy.GetComponent<GetBase>()._base.MoveByOffset(SP.startPosition);
             copy.GetComponent<GetBase>()._base.colour = SP.colour;
-            
+            copy.GetComponent<AnimationController>().input = SP.input;
             players.Add(copy);
         }
 
@@ -48,7 +51,19 @@ public class PlayerSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(activateTwoPlayer)) includeYourSibling = !includeYourSibling;
         
+        
+        if (includeYourSibling)
+        {
+            players[0].SetActive(true);
+            players[1].SetActive(true);
+        }
+        else
+        {
+            players[0].SetActive(true);
+            players[1].SetActive(false);
+        }
     }
     
     //container for list of players
@@ -60,6 +75,8 @@ public class PlayerSpawner : MonoBehaviour
         public Vector3 endPosition;
         
         public Color colour;
+
+        public InputSystem input;
     }
     
     public void TranslateToStart(Vector3 start, GameObject player)
