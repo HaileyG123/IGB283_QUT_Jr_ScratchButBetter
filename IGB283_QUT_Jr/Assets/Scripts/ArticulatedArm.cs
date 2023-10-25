@@ -134,8 +134,6 @@ public class ArticulatedArm : MonoBehaviour
             child.GetComponent<ArticulatedArm>().RotateAroundPoint(
                 point, angle, lastAngle);
         }
-
-        
     }
     
 
