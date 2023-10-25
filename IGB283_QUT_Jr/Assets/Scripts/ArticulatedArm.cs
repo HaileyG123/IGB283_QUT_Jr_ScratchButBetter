@@ -11,7 +11,7 @@ public class ArticulatedArm : MonoBehaviour
 {
     //variables to allow the set and establish communication between 
     //each section
-    public GameObject child;
+    public List<GameObject> children = new List<GameObject>();
     public GameObject control;
     
     public Vector3 jointLocation;
@@ -43,11 +43,16 @@ public class ArticulatedArm : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //to ensure all children are moving with their parent
-        if (child != null)
+
+        foreach (GameObject child in children)
         {
-            child.GetComponent<ArticulatedArm>().MoveByOffset(jointOffset);
-        } 
+            //to ensure all children are moving with their parent
+            if (child != null)
+            {
+                child.GetComponent<ArticulatedArm>().MoveByOffset(jointOffset);
+            }    
+        }
+         
     }
     
     // Update is called once per frame
@@ -56,11 +61,15 @@ public class ArticulatedArm : MonoBehaviour
         //nodding
         if (nodding)
         {
-            if(child != null)
+            foreach (GameObject child in children)
             {
-                child.GetComponent<ArticulatedArm>().RotateAroundPoint(
-                    jointLocation, angle, lastAngle);
-            } 
+                if (child != null)
+                {
+                    child.GetComponent<ArticulatedArm>().RotateAroundPoint(
+                        jointLocation, angle, lastAngle);
+                }
+            }
+
             if(timeElapsed > 0.2f)
             {
                 float temp = lastAngle;
@@ -83,11 +92,14 @@ public class ArticulatedArm : MonoBehaviour
             if(control != null)
             {
                 angle = control.GetComponent<Slider>().value;
-            } 
+            }
 
-            if(child != null)
+            foreach (GameObject child in children)
             {
-                child.GetComponent<ArticulatedArm>().RotateAroundPoint(jointLocation, angle, lastAngle);
+                if (child != null)
+                {
+                    child.GetComponent<ArticulatedArm>().RotateAroundPoint(jointLocation, angle, lastAngle);
+                }
             }
         }
         
@@ -128,11 +140,15 @@ public class ArticulatedArm : MonoBehaviour
         
         // Apply the transformation to the joint
         jointLocation = M.MultiplyPoint(jointLocation);
-        
-        // Apply the transformation to the children
-        if (child != null) {
-            child.GetComponent<ArticulatedArm>().RotateAroundPoint(
-                point, angle, lastAngle);
+
+        foreach (GameObject child in children)
+        {
+            // Apply the transformation to the children
+            if (child != null)
+            {
+                child.GetComponent<ArticulatedArm>().RotateAroundPoint(
+                    point, angle, lastAngle);
+            }
         }
     }
     
@@ -225,12 +241,16 @@ public class ArticulatedArm : MonoBehaviour
         mesh.vertices = vertices; //updating the mesh to it new position
 
         jointLocation = T.MultiplyPoint(jointLocation);
-        
-        //to ensure all children are moving with their parent
-        if (child != null)
+
+        foreach (GameObject child in children)
         {
-            child.GetComponent<ArticulatedArm>().MoveByOffset(offset);
-        } 
+            //to ensure all children are moving with their parent
+            if (child != null)
+            {
+                child.GetComponent<ArticulatedArm>().MoveByOffset(offset);
+                Debug.Log(child);
+            }
+        }
     }
 
     public void FlipJunior()
@@ -258,13 +278,16 @@ public class ArticulatedArm : MonoBehaviour
         mesh.vertices = vertices; //updating the mesh to it new position
 
         jointLocation = M.MultiplyPoint(jointLocation);
-        
-        //to ensure all children are moving with their parent
-        if (child != null)
+
+        foreach (GameObject child in children)
         {
-            child.GetComponent<ArticulatedArm>().FlipJunior();
-        } 
-        
+            //to ensure all children are moving with their parent
+            if (child != null)
+            {
+                child.GetComponent<ArticulatedArm>().FlipJunior();
+            }
+        }
+
         //recalculate angle
         float temp = lastAngle;
             
@@ -297,11 +320,14 @@ public class ArticulatedArm : MonoBehaviour
         mesh.vertices = vertices; //updating the mesh to it new position
 
         jointLocation = M.MultiplyPoint(jointLocation);
-        
-        //to ensure all children are moving with their parent
-        if (child != null)
+
+        foreach (GameObject child in children)
         {
-            child.GetComponent<ArticulatedArm>().ScaleJunior(scaleOffset);
+            //to ensure all children are moving with their parent
+            if (child != null)
+            {
+                child.GetComponent<ArticulatedArm>().ScaleJunior(scaleOffset);
+            }
         }
     }
 

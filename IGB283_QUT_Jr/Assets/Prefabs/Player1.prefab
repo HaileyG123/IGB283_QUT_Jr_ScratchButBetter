@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec315b0fdd8d064a872932ef42321dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  child: {fileID: 0}
+  children: []
   control: {fileID: 0}
   jointLocation: {x: 0, y: 0, z: 1}
   jointOffset: {x: 0, y: 0.75, z: 1}
@@ -103,7 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec315b0fdd8d064a872932ef42321dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  child: {fileID: 345759051161969123}
+  children:
+  - {fileID: 345759051161969123}
   control: {fileID: 0}
   jointLocation: {x: 0, y: 0, z: 1}
   jointOffset: {x: 0, y: 0, z: 0}
@@ -163,7 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec315b0fdd8d064a872932ef42321dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  child: {fileID: 345759049521295911}
+  children:
+  - {fileID: 345759049521295911}
   control: {fileID: 0}
   jointLocation: {x: 0, y: 1, z: 1}
   jointOffset: {x: 0, y: 1, z: 1}
@@ -302,7 +304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec315b0fdd8d064a872932ef42321dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  child: {fileID: 345759050225965581}
+  children:
+  - {fileID: 345759050225965581}
   control: {fileID: 0}
   jointLocation: {x: 0, y: 1, z: 1}
   jointOffset: {x: 0, y: 1, z: 1}
