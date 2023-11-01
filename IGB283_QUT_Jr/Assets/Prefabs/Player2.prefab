@@ -423,13 +423,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f53d673a8fead74687862233b0277fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 3, y: 0, z: 0}
+  offset: {x: 0, y: 0, z: 0}
   jumpOffset: {x: 0, y: 0.01, z: 0}
   _base: {fileID: 8700196326409323819}
   upperArm: {fileID: 8700196328021410113}
   lowerArm: {fileID: 8700196326526864472}
   input: {fileID: 0}
-  end: 9
+  end: 12
   boundaryBottom: -0.5
   isControlled: 0
   task2: 1

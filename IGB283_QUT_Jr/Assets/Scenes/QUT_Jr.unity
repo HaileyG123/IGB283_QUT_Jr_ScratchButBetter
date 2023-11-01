@@ -1327,7 +1327,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366106458}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: -0.007, y: -1.06, z: 0}
   m_LocalScale: {x: 17.754, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1797,6 +1797,7 @@ GameObject:
   - component: {fileID: 1751249648}
   - component: {fileID: 1751249647}
   - component: {fileID: 1751249646}
+  - component: {fileID: 1751249649}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1870,6 +1871,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1751249649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751249645}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3487441c64ad04740b5c5c71717758c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  depthOfFieldShader: {fileID: 4800000, guid: a86ed8c1c42e2c74fb3806cfbd2b415c, type: 3}
+  focusPoint: {x: 1, y: 1}
+  blurSize: 100
 --- !u!1 &1773224311
 GameObject:
   m_ObjectHideFlags: 0
