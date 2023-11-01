@@ -27,19 +27,13 @@ public class PlayerSpawner : MonoBehaviour
         //getting the needed scripts to calcualte 
         transformScript = GetComponent<IGB283Transform>();
         
-        Debug.Log(spawningPoints.Count);
         //spawns in points at desired positions  
         foreach (spawnPoints SP in spawningPoints)
         {
             GameObject copy = Instantiate(player, new Vector3(0.0f, 0.0f, 1.0f), Quaternion.identity);
             
-            //Set the object's properties
-            //AA = copy.GetComponent<ArticulatedArm>();
-            //AA.colour = 
-            Debug.Log("executed");
-            
             copy.GetComponent<GetBase>()._base.MoveByOffset(SP.startPosition);
-            copy.GetComponent<GetBase>()._base.colour = SP.colour;
+            copy.GetComponent<GetBase>()._base.ColourChange(SP.colour);
             copy.GetComponent<AnimationController>().input = SP.input;
             players.Add(copy);
         }

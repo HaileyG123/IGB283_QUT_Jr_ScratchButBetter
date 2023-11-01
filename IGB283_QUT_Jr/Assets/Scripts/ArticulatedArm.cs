@@ -78,11 +78,10 @@ public class ArticulatedArm : MonoBehaviour
                 angle = temp;
             
                 timeElapsed = 0f;
-                //Debug.Log("inside " + timeElapsed);
 
                 angleTracker = 0;
             
-                Debug.Log("change");
+                //Debug.Log("change");
             }
             timeElapsed += Time.deltaTime;
         }
@@ -108,6 +107,7 @@ public class ArticulatedArm : MonoBehaviour
         // Recalculate the bounds of the mesh
         mesh.RecalculateBounds();
     }
+    
     //Rotate the limb around a point 
     public void RotateAroundPoint(Vector3 point, float angle,
         float lastAngle)
@@ -151,8 +151,24 @@ public class ArticulatedArm : MonoBehaviour
             }
         }
     }
-    
 
+    public void ColourChange(Color colour)
+    {
+        for (int i = 0; i < limbVertexLocations.Length; i++)
+        {
+            colours[i] = new Color(colour.r, colour.g, colour.b);
+        } 
+        mesh.colors = colours;
+
+        foreach (GameObject child in children)
+        {
+            if (child != null)
+            {
+                child.GetComponent<ArticulatedArm>().ColourChange(colour);
+            }
+        }
+    }
+    
     private void DrawLimb()
     {
         // Add a MeshFilter and MeshRenderer to the Empty
@@ -176,14 +192,14 @@ public class ArticulatedArm : MonoBehaviour
         for (int i = 0; i < limbVertexLocations.Length; i++)
         {
             tempArray[i] = limbVertexLocations[i]; // sets the vertex locations through a loop
-            colours[i] = new Color(colour.r, colour.g, colour.b);
+            //colours[i] = new Color(colour.r, colour.g, colour.b);
         }
         
         mesh.vertices = tempArray;
         
         Debug.Log(mesh.vertices);
         
-        mesh.colors = colours;
+        //mesh.colors = colours;
 
         if (limbVertexLocations.Length == 4)
         {

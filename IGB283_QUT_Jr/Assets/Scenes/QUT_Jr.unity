@@ -935,7 +935,7 @@ MonoBehaviour:
   spawningPoints:
   - startPosition: {x: 1, y: 0, z: 1}
     endPosition: {x: 0, y: 0, z: 1}
-    colour: {r: 1, g: 0, b: 0, a: 0}
+    colour: {r: 0, g: 1, b: 0.05887294, a: 0}
     input: {fileID: 11400000, guid: 63d043442727fa042afda7842a740ce1, type: 2}
   - startPosition: {x: -1, y: 0, z: 1}
     endPosition: {x: 0, y: 0, z: 1}
