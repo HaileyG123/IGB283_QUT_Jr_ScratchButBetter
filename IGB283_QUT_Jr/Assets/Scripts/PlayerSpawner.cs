@@ -9,8 +9,6 @@ public class PlayerSpawner : MonoBehaviour
     private IGB283Transform transformScript;
 
     public CameraSystem CS;
-    
-    public GameObject player;
 
     private List<GameObject> players = new List<GameObject>();
     private ArticulatedArm AA;
@@ -30,7 +28,7 @@ public class PlayerSpawner : MonoBehaviour
         //spawns in points at desired positions  
         foreach (spawnPoints SP in spawningPoints)
         {
-            GameObject copy = Instantiate(player, new Vector3(0.0f, 0.0f, 1.0f), Quaternion.identity);
+            GameObject copy = Instantiate(SP.playerPF, new Vector3(0.0f, 0.0f, 1.0f), Quaternion.identity);
             
             copy.GetComponent<GetBase>()._base.MoveByOffset(SP.startPosition);
             copy.GetComponent<GetBase>()._base.ColourChange(SP.colour);
@@ -65,6 +63,7 @@ public class PlayerSpawner : MonoBehaviour
     public class spawnPoints
     {
         //spawn point positions
+        public GameObject playerPF;
         public Vector3 startPosition;
         public Vector3 endPosition;
         

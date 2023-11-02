@@ -427,7 +427,7 @@ MonoBehaviour:
   _base: {fileID: 8700196326409323819}
   upperArm: {fileID: 8700196328021410113}
   lowerArm: {fileID: 8700196326526864472}
-  input: {fileID: 0}
+  input: {fileID: 11400000, guid: 48b939f6eb64c8b47a98ff7a18dcebbc, type: 2}
   end: 12
   boundaryBottom: -0.5
   isControlled: 0
