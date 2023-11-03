@@ -12,8 +12,6 @@ public class CameraSystem : MonoBehaviour
     private Vector3 midpoint;
     private Vector3 lineBetweenPlayers;
 
-    private Vector3 center = new Vector3(0.0f, 0.0f, 1.0f);
-
     private bool outOfView = true;
     
     // Start is called before the first frame update
@@ -35,15 +33,22 @@ public class CameraSystem : MonoBehaviour
         outOfView = (Mathf.Abs(player1.mesh.bounds.center.x + 0.3f) > cam.orthographicSize 
                      || Mathf.Abs(player2.mesh.bounds.center.x + 0.3f) > cam.orthographicSize)
             || (Mathf.Abs(player1.mesh.bounds.center.x - 0.3f) > cam.orthographicSize 
-                || Mathf.Abs(player2.mesh.bounds.center.x - 0.3f) > cam.orthographicSize);
+                || Mathf.Abs(player2.mesh.bounds.center.x - 0.3f) > cam.orthographicSize)
+            || (Mathf.Abs(player1.mesh.bounds.center.y + 0.3f) > cam.orthographicSize 
+                || Mathf.Abs(player2.mesh.bounds.center.y + 0.3f) > cam.orthographicSize)
+            || (Mathf.Abs(player1.mesh.bounds.center.y - 0.3f) > cam.orthographicSize 
+                || Mathf.Abs(player2.mesh.bounds.center.y - 0.3f) > cam.orthographicSize);
         
-        if (mag <= 10 && !outOfView)
+        if (mag <= 7 && !outOfView)
         {
             cam.orthographicSize = 5f;
+            Debug.Log(outOfView);
+            Debug.Log("magnitude: " + mag);
         }
         else
         {
             cam.orthographicSize = (float)(mag/2 + Mathf.Abs(midpoint.x));
+            
             if (cam.orthographicSize < 5f)
             {
                 cam.orthographicSize = 5f;
